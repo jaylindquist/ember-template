@@ -1,3 +1,4 @@
+// Model
 Store = {
 	franchises: Ember.A(),
 	defaultFranchise: function() {
@@ -68,20 +69,28 @@ Store = {
 	}
 };
 
-App = Ember.Application.create({
-	LOG_TRANSITIONS: true
-});
+// Application
+App = Ember.Application.create({});
 
+// Model definition
 App.Franchise = Ember.Object.extend({});
 App.Game = Ember.Object.extend({});
 
 App.GameStore = Store;
 App.GameStore.init();
 
+// router
 App.Router.map(function() {
 	this.resource('franchise', { path:'/franchise/:franchise_id'}, function() {
 		this.resource('game', { path: '/game/:game_id' });
 	});
+});
+
+// routes
+App.IndexRoute = Ember.Route.extend({
+	redirect: function() {
+		this.transitionTo('franchise', App.GameStore.defaultFranchise());
+	}
 });
 
 App.FranchiseRoute = Ember.Route.extend({
@@ -99,11 +108,5 @@ App.GameRoute = Ember.Route.extend({
 App.ApplicationRoute = Ember.Route.extend({
 	setupController: function(applicationController) {
 		applicationController.set('franchises', App.GameStore.franchises);
-	}
-});
-
-App.IndexRoute = Ember.Route.extend({
-	redirect: function() {
-		this.transitionTo('franchise', App.GameStore.defaultFranchise());
 	}
 });
