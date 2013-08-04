@@ -7,31 +7,31 @@
 <body>
 
 <script type="text/x-handlebars">
-	<h1>Franchises</h1>
-	<ul>
-		{{#each franchise in franchises}}
-			<li>{{#linkTo 'franchise' franchise}}{{franchise.title}}{{/linkTo}}</li>
-		{{/each}}
-	</ul>
+    <h1>Franchises</h1>
+    <ul>
+        {{#each franchise in franchises}}
+            <li>{{#linkTo 'franchise' franchise}}{{franchise.title}}{{/linkTo}}</li>
+        {{/each}}
+    </ul>
 
-	{{outlet}}
+    {{outlet}}
 </script>
 
 <script type="text/x-handlebars" id="franchise">
-	<h2>{{title}}</h2>
-	<ul>
-		{{#each game in games}}
-		<li>{{#linkTo 'game' game}}{{game.title}}{{/linkTo}}</li>
-		{{/each}}
-	</ul>
-	{{outlet}}
+    <h2>{{title}}</h2>
+    <ul>
+        {{#each game in games}}
+        <li>{{#linkTo 'game' game}}{{game.title}}{{/linkTo}}</li>
+        {{/each}}
+    </ul>
+    {{outlet}}
 </script>
 
 <script type="text/x-handlebars" id="game">
-	<dl>
-		<dt>{{title}}</dt>
-		<dd>{{releaseDate}}</dd>
-	</dl>
+    <dl>
+        <dt>{{title}}</dt>
+        <dd>{{releaseDate}}</dd>
+    </dl>
 </script>
 
 <script src="js/libs/jquery-1.9.1.js"></script>
